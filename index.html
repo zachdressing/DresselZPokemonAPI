@@ -1,41 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokebase</title>
-    <link href=“/dist/output.css” rel=“stylesheet”>
+    <link href="./dist/output.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="/assets/tabFavicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dekko&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div id="content" class="container flex flex-col justify-center items-center max-w-5xl bg-bgImg">
-        <navbar class="flex">
-            <form class="max-w-5xl">
-                <input type="text">
+
+<body
+    class="bg-bgImg backdrop-brightness-30 bg-[#3B4CCA] bg-no-repeat bg-center flex justify-center items-start font-mainFont">
+    <div id="content" class="container flex flex-col max-w-[975px] mt-5">
+        <navbar class="sm:flex justify-between max-w-[975px]">
+            <form>
+                <input class="rounded-full border-4 border-black text-[24px]" id="searchval" type="text">
+                
             </form>
-            <button>
+            <button id="search" class="bg-[#3B4CCA]  rounded-full w-[137px] border-4 border-black text-[36px]">
                 search
             </button>
-            <button>
+            <button id="random" class="bg-[#CC0000]  rounded-full w-[137px] border-4 border-black text-[36px]">
                 random
             </button>
-            <button>
-                favorite
+            <button id="favorite" class="bg-[#B3A125]  rounded-full w-[137px] border-4 border-black text-[32px]">
+                favorites
             </button>
-            <div class="trademark" style="width: fit-content;">
-                using <span style="width: fit-content;"><img src="/assets/pokeAPI.png" alt="pokeAPI Logo"></span>
+            <div id="trademark" class="bg-[#D9D9D9] flex w-fit items-center border-4 border-black">
+                using <img src="/assets/pokeAPI.png" alt="pokeAPI Logo">
             </div>
         </navbar>
-        <div class="mainData">
-            <div class="pkmImage">
-                <img id="pkmImg" src="/assets/pokeAPI.png" alt="pokemon Image" width="500px" height="500px">
-            </div>
-            <div class="pkmMainInf">
 
+        <div class="container sm:flex justify-around gap-x-6 w-[975px] mt-5">
+            <div class="col">
+                <div id="mainData" class="flex flex-col h-[906px] justify-around w-[500px]">
+                    <div id="pkmImage" class="bg-[#D9D9D9] border-4 border-black text-center ">
+                        <img id="pkmImg" src="" class="text-[0px]" alt="pokemon Image" width="500px" height="500px">
+                    </div>
+                    <div class="btnDiv flex"><button id="shinyBtn"
+                            class="border-4 border-black rounded-full w-60 mx-auto bg-[#CC0000]">shiny
+                            form</button> <button id="favoriteBtn"
+                            class="border-4 border-black rounded-full w-60 mx-auto bg-[#B3A125]">favorite this pokemon</button>
+                    </div>
+
+                    <div id="pkmMainInf" class="bg-[#D9D9D9] h-[390px] p-4 flex flex-col border-4 border-black mb-5">
+                        <h1 id="pkmName" class="underline capitalize text-[72px]">Pokemon</h1>
+                        <p id="types" class="capitalize">Types: </p>
+                        <p id="abilities" class="capitalize">Abilities: </p>
+                        <p class="capitalize max-h-[150px] overflow-y-scroll" id="move">Moves: </p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="sideData">
+            <div class="col">
+                <div id="sideData" class="flex flex-col h-[906px] justify-between">
+                    <div id="encounter" class="bg-[#D9D9D9] h-[150px] p-4 border-4 border-black text-[36px]">
+                        <p id="location"></p>
+                    </div>
+                    <div id="stats"
+                        class="bg-[#D9D9D9] h-[150px] auto-rows-auto px-5 border-4 border-black text-[24px]">
+                        <div class="row h-[75px] flex justify-between items-center">
+                            <p id="hp">HP: </p>
+                            <p id="atk">ATK: </p>
+                            <p id="def">DEF: </p>
+                        </div>
+                        <div class="row flex justify-between items-center">
+                            <p id="satk">SATK: </p>
+                            <p id="sdef">SDEF: </p>
+                            <p id="spd">SPD: </p>
+                        </div>
+                    </div>
+                    <div id="pokedex" class="bg-[#D9D9D9] flex border-4 border-black h-[150px] flex-col px-4">
+                        <p class="text-[32px] underline">Pokedex Entry</p>
+                        <p id="pokedexData">this is the pokedex information<br>like a lot</p>
+                    </div>
+                    <div id="evolutions" class="flex h-[380px] w-[450px] bg-[#D9D9D9] justify-around border-4 border-black flex-wrap items-center mb-5">
+                        <h1 class="text-[32px] underline self-start">Evolutions</h1>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+
+
+
+
+    <script src="/node_modules/flowbite/dist/flowbite.min.js"></script>
+    <script src="/scripts/app.js"></script>
 </body>
+
 </html>
