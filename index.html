@@ -15,7 +15,7 @@
 <body
     class="bg-bgImg backdrop-brightness-30 bg-[#3B4CCA] bg-no-repeat bg-center flex justify-center items-start font-mainFont">
     <div id="content" class="container flex flex-col max-w-[975px] min-h-[100vh] items-center mt-5">
-        <navbar class="flex flex-wrap justify-center p-4 w-full">
+        <navbar class="flex flex-wrap justify-around p-4 w-full">
             <input class="rounded-full border-4 border-black text-[24px]" id="searchval" type="text">
             <button id="search" class="bg-[#3B4CCA]  rounded-full lg:w-[18%] border-4 border-black text-[36px]">
                 search
@@ -41,7 +41,7 @@
 
         <div class="container lg:flex justify-around gap-x-6 lg:w-[975px] mt-5">
             <div class="col flex justify-center">
-                <div id="mainData" class="flex flex-col h-[906px] justify-around md:w-full lg:max-w-[500px] gap-1">
+                <div id="mainData" class="flex flex-col h-[906px] justify-around w-full lg:max-w-[500px] gap-1">
                     <div id="pkmImage" class="bg-[#D9D9D9] border-4 border-black h-[475px] flex justify-center">
                         <img id="pkmImg" src="" class="text-[0px]" alt="pokemon Image">
                     </div>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="col flex justify-center">
-                <div id="sideData" class="flex flex-col h-[906px] justify-between w-full">
+                <div id="sideData" class="flex flex-col h-[906px] justify-between w-full lg:min-w-[450px]">
                     <div id="encounter" class="bg-[#D9D9D9] h-[150px] p-4 border-4 border-black text-[36px]">
                         <p id="location"></p>
                     </div>

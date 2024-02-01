@@ -1973,6 +1973,10 @@ input:checked + .toggle-bg {
   .sm\:flex {
     display: flex;
   }
+
+  .sm\:w-full {
+    width: 100%;
+  }
 }
 
 @media (min-width: 768px) {
@@ -2020,6 +2024,14 @@ input:checked + .toggle-bg {
 
   .lg\:w-\[18\%\] {
     width: 18%;
+  }
+
+  .lg\:min-w-full {
+    min-width: 100%;
+  }
+
+  .lg\:min-w-\[450px\] {
+    min-width: 450px;
   }
 
   .lg\:max-w-\[975px\] {
