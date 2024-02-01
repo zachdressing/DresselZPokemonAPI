@@ -14,41 +14,45 @@
 
 <body
     class="bg-bgImg backdrop-brightness-30 bg-[#3B4CCA] bg-no-repeat bg-center flex justify-center items-start font-mainFont">
-    <div id="content" class="container flex flex-col max-w-[975px] mt-5">
-        <navbar class="sm:flex justify-between max-w-[975px]">
-            <form>
-                <input class="rounded-full border-4 border-black text-[24px]" id="searchval" type="text">
-                
-            </form>
-            <button id="search" class="bg-[#3B4CCA]  rounded-full w-[15%] border-4 border-black text-[36px]">
+    <div id="content" class="container flex flex-col max-w-[975px] min-h-[100vh] items-center mt-5">
+        <navbar class="flex flex-wrap justify-center p-4 w-full">
+            <input class="rounded-full border-4 border-black text-[24px]" id="searchval" type="text">
+            <button id="search" class="bg-[#3B4CCA]  rounded-full lg:w-[18%] border-4 border-black text-[36px]">
                 search
             </button>
-            <button id="random" class="bg-[#CC0000]  rounded-full w-[15%] border-4 border-black text-[36px]">
+            <br>
+            <button id="random" class="bg-[#CC0000]  rounded-full lg:w-[18%] border-4 border-black text-[36px]">
                 random
             </button>
-            <button id="favorite" data-dropdown-toggle="favoriteDDown" class="bg-[#B3A125]  rounded-full w-[15%] border-4 border-black text-[32px]">
+            <button id="favorite" data-dropdown-toggle="favoriteDDown"
+                class="bg-[#B3A125]  rounded-full lg:w-[18%] border-4 border-black text-[32px]">
                 favorites
             </button>
-            <div id="favoriteDDown" class="z-10 hidden bg-[#D9D9D9] border-4 border-black divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                <ul id="favList" class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+            <div id="favoriteDDown"
+                class="z-10 hidden bg-[#D9D9D9] border-4 border-black divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                <ul id="favList" class="py-2 p-4 gap-y-3 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownDefaultButton">
                 </ul>
-            </div>  
+            </div>
             <div id="trademark" class="bg-[#D9D9D9] flex w-fit items-center border-4 border-black">
-                using <img src="/assets/pokeAPI.png" alt="pokeAPI Logo">
+                using <img src="/assets/pokeAPI.png" onclick="searchCall(charmander)" alt="pokeAPI Logo">
             </div>
         </navbar>
 
-        <div class="container sm:flex justify-around gap-x-6 w-[975px] mt-5">
-            <div class="col">
-                <div id="mainData" class="flex flex-col h-[906px] justify-around w-[500px] gap-1">
-                    <div id="pkmImage" class="bg-[#D9D9D9] border-4 border-black text-center h-[475px]">
-                        <img id="pkmImg" src="" class="text-[0px]" alt="pokemon Image" width="500px" height="500px">
+        <div class="container lg:flex justify-around gap-x-6 lg:w-[975px] mt-5">
+            <div class="col flex justify-center">
+                <div id="mainData" class="flex flex-col h-[906px] justify-around md:w-full lg:max-w-[500px] gap-1">
+                    <div id="pkmImage" class="bg-[#D9D9D9] border-4 border-black h-[475px] flex justify-center">
+                        <img id="pkmImg" src="" class="text-[0px]" alt="pokemon Image">
                     </div>
-                    <div class="btnDiv flex"><button id="shinyBtn"
-                            class="border-4 border-black rounded-full w-60 mx-auto bg-[#CC0000]">Shiny
-                            Form</button> 
-                            <button id="favoriteBtn"
-                            class="border-4 border-black rounded-full w-60 mx-auto bg-[#B3A125]">Favorite this Pokemon</button>
+                    <div class="btnDiv flex">
+                        <button id="shinyBtn"
+                            class="border-4 border-black rounded-full w-40 md:w-60 mx-auto bg-[#CC0000]">Shiny Form
+                        </button>
+                        <button id="favoriteBtn"
+                            class="border-4 border-black rounded-full w-40 md:w-60 mx-auto bg-[#B3A125]">
+                            Favorite this Pokemon
+                        </button>
                     </div>
 
                     <div id="pkmMainInf" class="bg-[#D9D9D9] h-[390px] p-4 flex flex-col border-4 border-black mb-5">
@@ -59,8 +63,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div id="sideData" class="flex flex-col h-[906px] justify-between">
+            <div class="col flex justify-center">
+                <div id="sideData" class="flex flex-col h-[906px] justify-between w-full">
                     <div id="encounter" class="bg-[#D9D9D9] h-[150px] p-4 border-4 border-black text-[36px]">
                         <p id="location"></p>
                     </div>
@@ -81,7 +85,8 @@
                         <p class="text-[32px] underline">Pokedex Entry</p>
                         <p id="pokedexData"></p>
                     </div>
-                    <div id="evolutions" class="flex h-[380px] w-[450px] bg-[#D9D9D9] justify-around border-4 border-black flex-wrap items-center mb-5">
+                    <div id="evolutions"
+                        class="flex h-[380px] w-full bg-[#D9D9D9] justify-around border-4 border-black flex-wrap items-center mb-5">
                         <h1 class="text-[32px] underline self-start w-full p-4">Evolutions</h1>
                     </div>
                 </div>
@@ -94,7 +99,7 @@
 
 
     <script src="/node_modules/flowbite/dist/flowbite.min.js"></script>
-    <script src="/scripts/app.js"></script>
+    <script type="module" src="/scripts/app.js"></script>
 </body>
 
 </html>

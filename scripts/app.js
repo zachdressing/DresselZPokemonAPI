@@ -1,19 +1,9 @@
+import {saveLS, getLS, removeLS } from "./localstorage.js";
+export {searchCall, genList};
 let monData;
 let dexData;
 let evoData;
 let locData;
-let favArray;
-
-//Favorites Initialization
-const favIni = () =>{
-    favArray = localStorage.getItem('favorites');
-    favArray.map(fav =>{
-        let li = document.createElement('li');
-        li.textContent = fav;
-        document.getElementById('favList').appendChild(li);
-    })
-}
-favIni();
 
 //call APIs
 const searchCall = async (value) => {
@@ -44,13 +34,7 @@ const populate = async () => {
     let enIndex;
     evolutions.innerHTML = '';
 
-    //Favorites Array Check
-    if(favArray.includes(monData.name)){
-        favoriteBtn.textContent = "Unfavorite this Pokemon"
-    }
-    else{
-        favoriteBtn.textContent = "Favorite this Pokemon"
-    }
+    
 
     //Location
     let location = document.getElementById('location')
@@ -83,7 +67,7 @@ const populate = async () => {
 
 
     //Set all Variables
-    pkmName.textContent = monData.name;
+    pkmName.textContent = `${monData.name} - ${monData.id}`;
     pkmImg.src = monData.sprites.other['official-artwork'].front_default;
     hp.textContent = `HP: ${monData.stats[0].base_stat}`;
     atk.textContent = `Atk: ${monData.stats[1].base_stat}`;
@@ -119,27 +103,34 @@ const populate = async () => {
       }
 
     const grabEvos = async () => {
-        evoArray.map(async evo => {
-            const evoCall = await fetch(`https://pokeapi.co/api/v2/pokemon/${evo}`)
-            const data = await evoCall.json();
-
-            //create the div
-            let div = document.createElement('div');
-            div.setAttribute('id', `${evo}`)
-            div.classList.add('flex','flex-col', 'text-center')
-            document.getElementById('evolutions').appendChild(div);
-
-            //create the img
-            let img = document.createElement('img');
-            img.src = data.sprites.other['official-artwork'].front_default;
-            img.style.height = `${(document.getElementById('evolutions').clientHeight/3)-(24)}px`;
-            document.getElementById(`${evo}`).appendChild(img);
-
-            //create the nametag
+        if(evoArray.length > 0){
+            evoArray.map(async evo => {
+                const evoCall = await fetch(`https://pokeapi.co/api/v2/pokemon/${evo}`)
+                const data = await evoCall.json();
+    
+                //create the div
+                let div = document.createElement('div');
+                div.setAttribute('id', `${evo}`)
+                div.classList.add('flex','flex-col', 'text-center')
+                document.getElementById('evolutions').appendChild(div);
+    
+                //create the img
+                let img = document.createElement('img');
+                img.src = data.sprites.other['official-artwork'].front_default;
+                img.style.height = `${(document.getElementById('evolutions').clientHeight/3)-(24)}px`;
+                document.getElementById(`${evo}`).appendChild(img);
+    
+                //create the nametag
+                let p = document.createElement('p');
+                p.textContent = data.name;
+                document.getElementById(`${evo}`).appendChild(p);
+            })
+        }
+        else{
             let p = document.createElement('p');
             p.textContent = data.name;
             document.getElementById(`${evo}`).appendChild(p);
-        })
+        }
     }
 
         evolutions.classList.add("animate-pulse");
@@ -163,7 +154,7 @@ random.addEventListener('click', async () => {
     populate();
 })
 
-shinyBtn.addEventListener('click', async () => {
+shinyBtn.addEventListener('click', () => {
     if (pkmImg.src == monData.sprites.other['official-artwork'].front_default) {
         shinyBtn.textContent = 'shiny form'
         pkmImg.src = monData.sprites.other['official-artwork'].front_shiny;
@@ -174,12 +165,24 @@ shinyBtn.addEventListener('click', async () => {
     }
 })
 
-favoriteBtn.addEventListener('click', async() =>{
-    if(!favArray.includes(monData.name)){
-        localStorage.setItem('favorites', `${monData.name}`)
-    }
-    else{
-
-    }
+favoriteBtn.addEventListener('click', () =>{
+    saveLS(monData.name);
 })
 
+const genList = (array) =>{
+    array.map(favs => {
+        let li = document.createElement('li');
+        li.id = 'favItem';
+        li.classList.add("capitalize")
+        li.innerText = favs;
+        li.addEventListener('click', async () =>{
+            await searchCall(li.innerText.toLowerCase());
+            populate();
+        })
+        favList.appendChild(li);
+    })
+}
+
+//Favorites Array Check
+favoriteBtn.textContent = "Favorite this Pokemon";    
+saveLS('');
