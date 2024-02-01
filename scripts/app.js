@@ -2,8 +2,22 @@ let monData;
 let dexData;
 let evoData;
 let locData;
+let favArray;
 
+//Favorites Initialization
+const favIni = () =>{
+    favArray = localStorage.getItem('favorites');
+    favArray.map(fav =>{
+        let li = document.createElement('li');
+        li.textContent = fav;
+        document.getElementById('favList').appendChild(li);
+    })
+}
+favIni();
+
+//call APIs
 const searchCall = async (value) => {
+    
     const monPromise = await fetch(`https://pokeapi.co/api/v2/pokemon/${value}`);
     monData = await monPromise.json();
 
@@ -22,6 +36,7 @@ const searchCall = async (value) => {
 const populate = async () => {
 
     //Clear all Variables
+    searchval.value ='';
     let typeArray = [];
     let abiArray = [];
     let moveArray = [];
@@ -29,10 +44,20 @@ const populate = async () => {
     let enIndex;
     evolutions.innerHTML = '';
 
+    //Favorites Array Check
+    if(favArray.includes(monData.name)){
+        favoriteBtn.textContent = "Unfavorite this Pokemon"
+    }
+    else{
+        favoriteBtn.textContent = "Favorite this Pokemon"
+    }
+
     //Location
     let location = document.getElementById('location')
+
     if(locData.length > 0){
-        location.innerText = `You can find this Pokemon at ${locData[0].location_area.name}`;
+        let locArray = locData[0].location_area.name.split('-').slice(0, -1).join(' ');
+        location.innerText = `You can find this Pokemon at ${locArray}`;
     }
     else{
         location.innerText = `You cannot find this Pokemon in the wild.`
@@ -124,24 +149,37 @@ const populate = async () => {
 
 //Buttons
 search.addEventListener('click', async () => {
+    pkmImg.classList.add("animate-pulse");
     await searchCall(searchval.value.toLowerCase());
+    pkmImg.classList.remove("animate-pulse");
     populate();
 })
 
 random.addEventListener('click', async () => {
     let rand = Math.round(Math.random() * 650);
+    pkmImg.classList.add("animate-pulse");
     await searchCall(rand);
+    pkmImg.classList.remove("animate-pulse");
     populate();
 })
 
 shinyBtn.addEventListener('click', async () => {
     if (pkmImg.src == monData.sprites.other['official-artwork'].front_default) {
-        shinyBtn.textContent = 'normal form'
+        shinyBtn.textContent = 'shiny form'
         pkmImg.src = monData.sprites.other['official-artwork'].front_shiny;
     }
     else {
-        shinyBtn.textContent = 'shiny form'
+        shinyBtn.textContent = 'normal form'
         pkmImg.src = monData.sprites.other['official-artwork'].front_default;
+    }
+})
+
+favoriteBtn.addEventListener('click', async() =>{
+    if(!favArray.includes(monData.name)){
+        localStorage.setItem('favorites', `${monData.name}`)
+    }
+    else{
+
     }
 })
 
