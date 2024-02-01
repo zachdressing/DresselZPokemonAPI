@@ -5,8 +5,8 @@ const saveLS = (fav) => {
     favList.innerHTML = '';
     !favorites.includes(fav) ? favorites.push(fav) : removeLS(fav, favorites);
     localStorage.setItem('favorites', JSON.stringify(favorites));
-    favorites.includes(fav) ? favoriteBtn.textContent = "Unfavorite this Pokemon" : favoriteBtn.textContent = "Favorite this Pokemon";
     genList(favorites);
+    favorites.includes(fav) ? favoriteBtn.textContent = "Unfavorite this Pokemon" : favoriteBtn.textContent = "Favorite this Pokemon";
 }
 
 const getLS = () => {
