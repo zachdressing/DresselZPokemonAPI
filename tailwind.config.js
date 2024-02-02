@@ -15,7 +15,7 @@ module.exports = {
         30: '.40',
       },
       backgroundImage: {
-        bgImg : "url('/assets/pokemartLogo.png')"
+        bgImg: "url('/assets/pokemartLogo.png')"
       }
     },
   },
