@@ -128,8 +128,8 @@ const populate = async () => {
         }
         else {
             let p = document.createElement('p');
-            p.textContent = data.name;
-            document.getElementById(`${evo}`).appendChild(p);
+            p.textContent = "There are no Evolutions for this Pokemon";
+            document.getElementById('evolutions').appendChild(p);
         }
     }
 
